@@ -44,3 +44,29 @@ Vaguely operate how the brain operates, NN are used in all kinds of applications
 - These models us the sigmoid/softmax functions to assign higher probabilities based on where points are and on which side of the decision boundary they lie. Therefore, if we pick the model that will have the highest probability (and assuming all the points are iid, we calculate the probability by multiplying each points' probability together (which again is determined by the sigmoid function)), the model with the highest probability of giving the events/labels that occured will be the one that most correctly separates the data. https://cl.ly/2b0Z3c2y1o2r
 - In practice, because this involves multiplying a lot of probabilities together, we want to avoid using products. This means we want to use logarithms so that we can add the logs of the probabilities together, rather than multiplying probabilities together. 
 - Because logarithms of less than 1 are negative, we'll take the negative log and sum those, ie -log(ab) = -log(a) - log(b)
+
+## Cross Entropy
+- A very important concept, the cross entropy is the sum of the negatives of the probabilities.
+- We want a low cross entropy. A good model will have high probabilities, and the log of a high probability is a small negative number. Because we sum these logs and take the negative of the sum, we expect a small number for a good model.
+- Furthermore, we can think of the -log(P) of a point in the model as the error of that point. Points that are misclassified will have small probabilities which means their negative log will be large.
+- Therefore, our goal in finding the model is to minimize the cross entropy. Cross Entropy is an error function of this model.
+- CE = - ∑(1, M) y_i * log(p_i) + (1 - y_i) * log(1 - p_i) where y_i is 1 or 0 based on whether something is classified as 1 or 0 and p_i is the probability that the i^th case is 1. This is for a binary class problem.
+- REMEMBER: the probabilities here are the probability that each point is it's true color given how the model splits the data.
+
+## Multi class Cross Entropy
+-https://cl.ly/1z0g333o1p1B
+
+## Logistic Regression
+- The Error function is the CE divided by the number of data points, whether binary or multiclass.
+- Probabilities in the error function are given by the sigmoid function, which takes as input Wx + b.
+- We'll use gradient descent to minimize this function, which will adjust W and b into W' and b' 
+
+## Gradient Descent
+- We do a bunch of steps in which we find out gradient and move in that direction. https://cl.ly/0Q3Z2r0k0d2t
+- The gradient is simply the vector sum of the derivatives of the error function in the negative direction.
+- There's some math involved, but basically we can adjust each weight w' <- w - alpha/m * (y - y_hat) * x_i and b' <- b - alpha/m * (y - y_hat) where y is the label and y_hat is the prediction. So basically we adjust each weight (and bias) by a scalar value of the x coordinate attached to that weight. That scalar is dictated by a learning step and by the different between the label and the prediction. This sounds similar to the perceptron algorithm.
+
+### Psuedo Algorithm
+- Start with random weights W and b.
+- For each point x_1 through x_n, update the weights and b according the the formula up top
+- Do this until the error is small
