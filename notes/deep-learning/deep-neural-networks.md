@@ -85,4 +85,23 @@
 ## Visual NN Explanation
 - A visual guide to NNs http://jalammar.github.io/visual-interactive-guide-basics-neural-networks/
 
+## Activation Functions
+- More about different activation functions can be found here: http://cs231n.github.io/neural-networks-1/#actfun
+
+### Sigmoid Function
+- A very common activation function that maps any real number to the range of 0 to 1. This can be viewed as a function that maps a score = Wx + b to a probability.
+- However, the sigmoid function has recently fallen out of favor for some potential drawbacks:
+- When the output of the function is near 0 or 1, the gradient becomes nearly zero, which means that the model doesn't adjust much if at all during back propogation
+- Also, if the weights are too large, the function becomes saturated, and the model barely learns anything
+- Sigmoid outputs are non-zero, and therefore it's kind of weird to use them in hidden layers.
+
+### Tanh (Hyperbolic Tangent Function)
+- Maps a real number to a range of -1 to 1. Although Tanh saturates as well, it is zero-centered, so it's almost ALWAYS PREFERRED TO SIGMOID in practice. Note that tanh(x) = 2*sigma(2*x) - 1
+
+### ReLU (Rectified Linear Unit Function)
+- Returns the max between 0 and any real number x.
+- It has been found to greatly accelerate the convergence in stochastic gradient descent, probably due to it's non-saturation
+- The simplicity of the function makes it quick to compute (no exponents or tangents) when compared to sigmoid and tanh
+- With a high learning rate, sometimes its possible for a large gradient to flow though a relu and kill the neuron by causing the gradient to be 0. Sometimes up to 40% of neurons could die during the training process. Monitoring and adjusting the learning rate can help.
+
 
