@@ -104,4 +104,15 @@
 - The simplicity of the function makes it quick to compute (no exponents or tangents) when compared to sigmoid and tanh
 - With a high learning rate, sometimes its possible for a large gradient to flow though a relu and kill the neuron by causing the gradient to be 0. Sometimes up to 40% of neurons could die during the training process. Monitoring and adjusting the learning rate can help.
 
+### Leaky ReLU
+- A ReLU that attempts to deal with the 0 gradient problem by adding a small negative slope, like 0.01. The benefits of Leaky ReLU at present seem unclear.
+
+### Maxout
+- Tries to capture all the benefits of ReLU functions (no disappearing gradients, no saturation) and doesn't have the drawbacks (dying ReLU).
+- Computed as max(w_1*X + b_1, w_2*X + b_2)
+
+### Tips:
+- According to the article cited above, try using ReLU first and monitor dead neurons. If you can't fix this, try leaky ReLU or Maxout. Don't try sigmoid. TanH is slightly better than sigmoid.
+- I'm skeptical of this, though, considering I just went through a unit talking about how we want to predict the probability that an input belongs to a class. How else to do this that sigmoid?
+
 
