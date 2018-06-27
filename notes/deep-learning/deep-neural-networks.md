@@ -115,4 +115,6 @@
 - According to the article cited above, try using ReLU first and monitor dead neurons. If you can't fix this, try leaky ReLU or Maxout. Don't try sigmoid. TanH is slightly better than sigmoid.
 - I'm skeptical of this, though, considering I just went through a unit talking about how we want to predict the probability that an input belongs to a class. How else to do this that sigmoid?
 
+## Training Hyperparameters using Scikit learn's grid optimizer
+- We can use sklearn's grid search to tune hyperparameters for deep learning models with this article as a guide: https://machinelearningmastery.com/grid-search-hyperparameters-deep-learning-models-python-keras/
 
