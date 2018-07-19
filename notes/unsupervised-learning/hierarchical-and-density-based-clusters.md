@@ -1,5 +1,5 @@
 # Hierarchical and Density Based Clustering
-- Heirarchical and density-based clustering are different clusterins algorithms that can deal with k-mean's shortcomings.
+- Heirarchical and density-based clustering are different clustering algorithms that can deal with k-mean's shortcomings.
 
 ## Heirarchical Clustering
 - Creates a heirarchy of clusters that makes the clustering easy to interpret
@@ -36,4 +36,23 @@
 ### Disadvantages of HC
 - Sensitive to noise and outliers
 - Computationally intensive (O(N^2))
+
+## DBSCAN
+- A density-based clustering algorithm, DBSCAN doesn't assign every point to a cluster. As a result, this means it can handle noise relatively well.
+
+### Pseudo Algorithm
+- Given epsillon ad minPts:
+- Choose a random point. Check if there are more than minPts within epsillon distance from the point. If not, this point is considered noise.
+- If yes, the point is known as a core point. Then we look at the other points in the cluster and see if they are also core points. If not, they are border points.
+- If they are core points, we do the same thing as before (namely, look at the surrounding points and ultimately distinguish whether they are core or border points). All of the points that stem from the origin core point are in that cluster.
+
+### Advantages
+- Don't need to specify number of clusters
+- Flexibility in the shape and sizes of clusters it can find
+- Able to deal with noise and outliers
+
+### Disadvantages
+- Border points that are reachable from two clusters will be assigned to the cluster that gets there first. Because points are chosen/evaluated randomly, there isn't a guarantee we'll get the same thing twice when running the algorithm. Usually most datasets don't face this issue.
+- Faces difficulty finding clusters of different densities (we can use a variation called H DBSCAN in this case though)
+
 
